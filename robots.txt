@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://cidoimo.github.io/sitemap.xml
+Sitemap: https://cidoimo.github.io/cidoimo.github.io//sitemap.xml
