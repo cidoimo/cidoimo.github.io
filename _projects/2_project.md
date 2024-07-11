@@ -26,6 +26,7 @@ This can be done using CPPTRAJ which is integrated into the AmberTools package. 
 <i>CPPTRAJ</i> is a powerful tool for analyzing and manipulating molecular trajectories. In this context, it's used to remove water molecules and ions from the trajectory, effectively isolating the molecules of interest. The conversion from mdcrd to xtc is necessary also for the subsequent analyses that will be done (RMSD, RMSF, ecc). <br><br>
 
 It will be enough to:
+
 <ol>
 <li>Call cpptraj</li>
 <li>Load the ionized prmtop file</li>
@@ -38,16 +39,12 @@ It will be enough to:
 Example:
 
 {% raw %}
+
 ```html
-cpptraj
-parm yourfile_ionized.prmtop
-trajin mdcrd.nvt1
-strip :WAT,Na+ #this command will remove water atoms and Na+ ions from the trajectory
-autoimage :1-46 #this command will remap the residues to correct the pbc problems
-trajout nvt1_nowat.xtc xtc
-go
-quit
+cpptraj parm yourfile_ionized.prmtop trajin mdcrd.nvt1 strip :WAT,Na+ #this command will remove water atoms and Na+ ions from the trajectory autoimage
+:1-46 #this command will remap the residues to correct the pbc problems trajout nvt1_nowat.xtc xtc go quit
 ```
+
 {% endraw %}
 <br>
 
@@ -56,6 +53,7 @@ Once this is done, we obtain a trajectory without water that can be visualized l
 <code>vmd yourfile_nowat.pdb nvt1_nowat.xtc</code><br><br>
 
 <b>OPS</b>, you don't have installed VMD on your computer? Nothing simplier!<br>
+
 <ol>
 <li> Visit the VMD website section <a href="https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD">Download</a></li>
 <li> Download the correct version of <b>Version 1.9.3 (2016-11-30)</b>. You need to register to VMD website in order to have a license to install the program!</li>

@@ -7,6 +7,7 @@ importance: 1
 category: work
 related_publications: false
 ---
+
 <p style="text-align: justify;">
 This tutorial aims to provide a comprehensive introduction to classical molecular dynamics simulations using the Amber software package. Amber is a widely used tool for simulating biomolecular systems at the atomic level, enabling researchers to investigate a wide range of phenomena, including protein folding, ligand-protein interactions, and enzyme catalysis.<br>
 This tutorial focuses on a small protein, Ubiquitin, which will be simulated for a time of 100 ns. Ubiquitin is a well-studied protein involved in various cellular processes, making it a suitable example for learning molecular dynamics simulations using Amber 2022.</p>
@@ -98,7 +99,6 @@ For some specifications, please refer to the <a href="https://ambermd.org/tutori
 <hr>
 <br>
 
-
 <p style="text-align: justify;">
 <b style="font-size: 20px;">Step 4</b>: Energy Minimization <br><br>
 In MD simulations, Energy Minimization (EM) is the process of finding a structure of a molecular system that corresponds to a local minimum on its potential energy surface (PES). This is done by iteratively adjusting the positions of the atoms in the system until the force on each atom is approximately zero. The resulting structure is often referred to as the "optimized geometry" or "minimum energy structure" of the system.<br>
@@ -112,21 +112,20 @@ Therefore, you need to prepare:<br></p>
 <li>em3.in, costraints at 5.0 kcal/mol </li>
 <li>em4.in, no costraints</li><br></ul>
 
-
 The constraints must be added at the end of each <i>file.in</i>, using the following wording (after backslash <b>/</b> sign ): <br><br>
 {% raw %}
+
 ```html
-Hold the Ubiquitin fixed
-20.0
-RES x y
-END END
+Hold the Ubiquitin fixed 20.0 RES x y END END
 ```
+
 {% endraw %}
 
 <p style="text-align: justify;">
 In this case <b>x</b> and <b>y</b> represent the first and last residue of the ubiquitin protein, so they would technically be <b>1</b> and <b>76</b>. This wording is used to specify the range of residues within which to apply the constraints.<br><br></p>
 
 <b>N.B.</b>Compared to the parameters suggested in the <a href="https://ambermd.org/tutorials/basic/tutorial0/index.php">tutorial</a>, insert also: <br><br>
+
 <ul style="text-align: justify;">
 <li>ut = 9.0 ! non-bonded interactions cutoff </li>
 <li>ncyc = 500 ! Initially do 500 steps of steepest descent minimization followed by 1500 steps (MAXCYC - NCYC) steps of conjugate gradient minimization.</li>
@@ -136,7 +135,6 @@ In this case <b>x</b> and <b>y</b> represent the first and last residue of the u
 <li>ntwx = 100 ! frequency of writing coordinated to trajectory file </li>
 
 </ul>
-
 
 <p style="text-align: justify;">
 Once the files are prepared, the <i>pmemd</i> command is invoked to run the minimization. Example: <br><br>
@@ -150,6 +148,7 @@ EM is a computational method that aims to find the most stable geometrical confo
 However, it is important to note that simple energy minimization does not involve writing an mdcrd trajectory file. This is because EM focuses exclusively on the geometrical configuration of the system, neglecting information about the movement and velocity of the molecules.<br>
 Despite specifying a value of <b>ntwx=100</b> in the input file (.in), which indicates the number of minimization steps to be performed, the mdcrd file will not contain any frames describing the evolution of the system over time. The mdcrd trajectory is only generated if a dynamic simulation is performed, which simulates the motion of the molecules based on the laws of molecular mechanics.<br>
 In summary, EM is a static process that determines the most stable geometrical conformation of a system, while dynamic simulations generate trajectories that describe the motion of molecules over time. To obtain an mdcrd file containing the system trajectory, it is necessary to perform a dynamic simulation and not just an energy minimization.<br>
+
 </p>
 
 <br>
@@ -188,11 +187,11 @@ It is important to remember that the system is at a temperature of 0 K at the be
 </p>
 
 {% raw %}
+
 ```html
-&wt type='TEMP0', istep1=0, istep2=2500000,
-value1=0.0,value2=300.0, &end
-&wt type='END', &end
+&wt type='TEMP0', istep1=0, istep2=2500000, value1=0.0,value2=300.0, &end &wt type='END', &end
 ```
+
 {% endraw %}
 
 <p style="text-align: justify;">
@@ -200,11 +199,11 @@ In this case, the system is being forced to go from 0.0 K to 300.00 K over 25000
 In the other parameters files it would be sufficient fix the value1 to 300.0, such as follows:<br></p>
 
 {% raw %}
+
 ```html
-&wt type='TEMP0', istep1=0, istep2=2500000,
-value1=300.0,value2=300.0, &end
-&wt type='END', &end
+&wt type='TEMP0', istep1=0, istep2=2500000, value1=300.0,value2=300.0, &end &wt type='END', &end
 ```
+
 {% endraw %}
 
 <p style="text-align: justify;">
@@ -218,7 +217,6 @@ value1=300.0,value2=300.0, &end
 <li>ntwx = 500 ! frequency (in timesteps) at which coordinates are writted </li>
 <li>ntwr  = 500 ! frequency (in timesteps) at which the system restart file is written </li><br><br>
 </ul></p>
-
 
 <p style="text-align: justify;">
 From NVT onwards (NVT, NPT, and MD), the commands run on the <b>GPU</b>. Proceed as follows: <br>
@@ -270,6 +268,7 @@ In this case, it is necessary to prepare a single npt.in file of parameters. The
 </ul><br><br>
 
 Once the npt.in file has been appropriately prepared, the NPT can be launched as the previous NVTs were (using <i>pmemd.cuda</i>). <br>
+
 </p>
 <br>
 <hr>
@@ -281,10 +280,11 @@ In the production run, the actual data collection for the properties of interest
 Once the system equilibration phase is complete, the system is ready for production.<br>
 A md.in parameter file is required, structured similarly to that of the previous steps! It will be sufficient to take the one from the npt and modify it by setting <b>nstlim</b> to the number of steps sufficient to run <b>100 ns</b> of dynamics.<br>  <br>
 
-Remember that  <b>nstlim * dt = time in ps and 1000 ps = 1 ns </b>.<br><br>
-So if 2500000 steps were run in NPT (2500000 * 0.002 = 5000 ps = 5 ns), how many nstlim are needed to run 100000 ps / 100 ns? The answer is simple: 50000000 (50000000 * 0.002 = 100 ns). <br>
-Once the md.in file has been appropriately modified, the simulation can be launched as the previous NVT and NPT were (<i>pmemd.cuda</i>).  <br>
+Remember that <b>nstlim _ dt = time in ps and 1000 ps = 1 ns </b>.<br><br>
+So if 2500000 steps were run in NPT (2500000 _ 0.002 = 5000 ps = 5 ns), how many nstlim are needed to run 100000 ps / 100 ns? The answer is simple: 50000000 (50000000 \* 0.002 = 100 ns). <br>
+Once the md.in file has been appropriately modified, the simulation can be launched as the previous NVT and NPT were (<i>pmemd.cuda</i>). <br>
 Of course the MD step will take a longer time to terminate! The run depends strictly from the number of atoms of the system. <br>
+
 </p>
 
 <br>
@@ -303,7 +303,6 @@ Of course the MD step will take a longer time to terminate! The run depends stri
 <div class="caption">
       Congrats, you've reached the end of this tutorial! Are you still sane? Go to the "Visualization of trajectory with VMD"
 </div>
-
 
 <br>
 <p>For all information about AMBER22, please visit the <a href="https://ambermd.org/doc12/Amber22.pdf">manual</a>. Thanks to <b>Alessia Pinto</b> for beta-testing and debugging this tutorial!</p>

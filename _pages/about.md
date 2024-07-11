@@ -18,7 +18,9 @@ news: true # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
+
 <br><br>
+
 <p style="text-align: justify;">
 Hi there, I'm Davide, but you can call me <b>Dave</b>! I'm a PhD student in <i>Computational Chemistry</i> and <i>Structural Biology</i> at <a href='https://web.uniroma2.it/en'>University of Rome "Tor Vergata"</a>.<br>
 My PhD project involves characterizing a model for the protein HuR (Human antigen R) with the aim of developing RNA drug inhibitors. This work is crucial for advancing our understanding of RNA interactions and could potentially lead to significant breakthroughs in drug development. <br>

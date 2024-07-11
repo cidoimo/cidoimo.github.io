@@ -21,6 +21,7 @@ For the purposes of this tutorial, the fitting will be performed on the entire p
 <code>gmx trjconv -s yourfile_nowat.pdb -f your_trajectory.xtc -fit progressive -o your_trajectory_fitted.xtc</code><br>
 
 where:
+
 <ul>
 <li><b>-s</b> specificies the reference structure;</li>
 <li><b>-f</b>specifies the input trajectory;</li>
@@ -66,6 +67,7 @@ For the purposes of this tutorial, the RMSD will be calculated on the entire pro
 <code>gmx rms -s your_file.pdb -f your_trajectory_fitted.xtc -tu ns -o rmsd.xvg</code><br><br>
 
 where:<br>
+
 <ul>
 <li><b>-s</b> specificies the reference structure;</li>
 <li><b>-f</b>specifies the input trajectory;</li>
@@ -97,6 +99,7 @@ For the purposes of this tutorial, RMSF will be calculated for each residue of t
 </p>
 
 <code>gmx rmf -s your_file.pdb -f your_trajectory_fitted.xtc -res -o rmsf.xvg</code><br><br>
+
 <ul>
 <li><b>-s</b> specificies the reference structure;</li>
 <li><b>-f</b>specifies the input trajectory;</li>
@@ -108,8 +111,8 @@ Once the command is executed, select <b>Protein-H</b> as the reference group to 
 <code>xmgrace rmsf.xvg</code>
 <br><br></p>
 
-
 <br><br>
+
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/rmsf.png" title="RMSF_ubiquitine" class="img-fluid rounded z-depth-1" %}
@@ -118,8 +121,6 @@ Once the command is executed, select <b>Protein-H</b> as the reference group to 
 <div class="caption">
     RMSF of Protein-H of Ubiquitine over 100 ns of classical MD simulation.
 </div>
-
-
 
 <p style="text-align: justify;">
 <b style="font-size: 20px;">Step 5</b>: Principal Component Analysis (PCA)<br><br>
@@ -132,7 +133,6 @@ PCA (Principal Component Analysis) is a statistical method used to identify and 
 In PCA applied to MD trajectories, the eigenvectors of the covariance matrix represent the major modes of variation in the positions of atoms over time. The eigenvalues indicate how much each principal component contributes to the overall variance of the trajectory. These concepts are fundamental for understanding and interpreting the results of PCA and for identifying the major modes of molecular motion.<br>
 From a PCA analysis, important files to retrieve are:<br><br>
 </p>
-
 
 <ul>
 <li><b>2d projections</b> (2dprojection.xvg) : shows the projections of the trajectories onto the principal components (PC1 and PC2);</li>
@@ -155,10 +155,7 @@ where:<br>
 <li><b>-tu ns</b>: specifies the time unit as nanoseconds.</li>
 </ul><br>
 
-
-
 <br> WORK IN PROGRESS! Please, wait 'till this page is completed!
-
 
 <br>
 For all information about Gromacs 2023, please visit the <a href="https://manual.gromacs.org/2023/">manual</a>. Thanks to Alessia Pinto for beta-testing and debugging this tutorial!
