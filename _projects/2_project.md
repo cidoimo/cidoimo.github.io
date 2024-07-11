@@ -1,81 +1,69 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
+title: Visualization of trajectories with VMD
+description: Isn't it beutiful?
+img: assets/img/ubi.gif
 importance: 2
 category: work
-giscus_comments: true
+giscus_comments: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+<p style="text-align: justify;">
+Molecular dynamics (MD) simulations are essential for understanding the behavior of molecules over time, but interpreting their complex data can be challenging. Visualization programs like Visual Molecular Dynamics (VMD) are crucial for making sense of this data, offering several key benefits:
+<br>
+<ul>
+<li>Enhanced Understanding: Visualization allows researchers to see molecular movements and interactions, providing deeper insights into processes like protein folding and molecular docking.</li>
+<li>Critical Interaction Identification: By visualizing molecular trajectories, scientists can identify important interactions and conformational changes, which is vital for drug design and other applications.</li>
+<li>Effective Communication: High-quality visualizations help communicate complex molecular phenomena to a broader audience, facilitating collaboration and understanding.</li>
+<li>Validation and Hypothesis Testing: Visualization helps validate simulation results and refine models by comparing them with experimental data.</li>
+<li>Educational Value: Tools like VMD are invaluable for teaching, providing an engaging way to explore and understand molecular dynamics.</li>
+</ul>
+<br>
+In summary, VMD and similar visualization tools are indispensable in molecular dynamics, transforming complex data into comprehensible and visually appealing insights that advance our understanding of molecular science.<br><br>
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+Once you have a trajectory, how can you visualize it? Let's assume you have a mdcrd trajectory (AMBER type). Now you have to strip all the unnecessary atoms (water and ions used to reproduce a physiological condition) from the file. How?<br>
+This can be done using CPPTRAJ which is integrated into the AmberTools package. You can find everything <a href="https://ambermd.org/tutorials/basic/tutorial0/">here</a>.<br><br>
+<i>CPPTRAJ</i> is a powerful tool for analyzing and manipulating molecular trajectories. In this context, it's used to remove water molecules and ions from the trajectory, effectively isolating the molecules of interest. The conversion from mdcrd to xtc is necessary also for the subsequent analyses that will be done (RMSD, RMSF, ecc). <br><br>
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+It will be enough to:
+<ol>
+<li>Call cpptraj</li>
+<li>Load the ionized prmtop file</li>
+<li>Load the mdcrd trajectory of interest (from nvt1 on; the energy minimization trajectories are not visualizable)</li>
+<li>Strip water molecules and ions</li>
+<li>Save the output</li>
+</ol>
+</p>
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
-
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+Example:
 
 {% raw %}
-
 ```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
+cpptraj
+parm yourfile_ionized.prmtop
+trajin mdcrd.nvt1
+strip :WAT,Na+ #this command will remove water atoms and Na+ ions from the trajectory
+autoimage :1-46 #this command will remap the residues to correct the pbc problems
+trajout nvt1_nowat.xtc xtc
+go
+quit
 ```
-
 {% endraw %}
+<br>
+
+<p style="text-align: justify;">
+Once this is done, we obtain a trajectory without water that can be visualized locally using VMD!
+<code>vmd yourfile_nowat.pdb nvt1_nowat.xtc</code><br><br>
+
+<b>OPS</b>, you don't have installed VMD on your computer? Nothing simplier!<br>
+<ol>
+<li> Visit the VMD website section <a href="https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD">Download</a></li>
+<li> Download the correct version of <b>Version 1.9.3 (2016-11-30)</b>. You need to register to VMD website in order to have a license to install the program!</li>
+<li> Untar the tar file you'll get</li>
+<li> Move to the <b>vmd-1.9.3/</b> folder and open a terminal</li>
+<li> Type <code>./configure</code></li>
+<li> Move to the <b>src/</b> folder</li>
+<li> Type <code>sudo make install</code></li>
+<li> Everything would work, now, by simply typing <code>vmd</code> in your command line</li>
+</ol>
+</p>
