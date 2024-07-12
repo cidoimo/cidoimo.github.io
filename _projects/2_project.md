@@ -66,5 +66,5 @@ Once this is done, we obtain a trajectory without water that can be visualized l
 </ol>
 </p>
 
-<p> Thanks to Alessia P.
-</p>
+<br><br>
+<p>Thanks to <b>Alessia Pinto</b> for beta-testing and debugging this tutorial!</p>

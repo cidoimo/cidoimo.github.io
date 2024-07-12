@@ -7,6 +7,7 @@ img: assets/img/ubi.gif
 importance: 3
 category: work
 ---
+<b>WORK IN PROGRESS!</b> Please, wait 'till this page is completed!
 
 <p style="text-align: justify;">
 The Molecular Dynamics (MD) trajectory will be analyzed using the modules contained in the <i>Gromacs 2023</i> suite. This part of the tutorial can be performed directly on a server or locally on your own PC, where Gromacs must be installed.<br>
@@ -155,7 +156,8 @@ where:<br>
 <li><b>-tu ns</b>: specifies the time unit as nanoseconds.</li>
 </ul><br>
 
-<br> WORK IN PROGRESS! Please, wait 'till this page is completed!
-
 <br>
-For all information about Gromacs 2023, please visit the <a href="https://manual.gromacs.org/2023/">manual</a>. Thanks to Alessia Pinto for beta-testing and debugging this tutorial!
+For all information about Gromacs 2023, please visit the <a href="https://manual.gromacs.org/2023/">manual</a>. Thanks to <b>Alessia Pinto</b> for beta-testing and debugging this tutorial!
+
+<br><br>
+WORK IN PROGRESS! Please, wait 'till this page is completed!

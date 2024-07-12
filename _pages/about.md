@@ -25,3 +25,7 @@ social: true # includes social icons at the bottom of the page
 Hi there, I'm Davide, but you can call me <b>Dave</b>! I'm a PhD student in <i>Computational Chemistry</i> and <i>Structural Biology</i> at <a href='https://web.uniroma2.it/en'>University of Rome "Tor Vergata"</a>.<br>
 My PhD project involves characterizing a model for the protein HuR (Human antigen R) with the aim of developing RNA drug inhibitors. This work is crucial for advancing our understanding of RNA interactions and could potentially lead to significant breakthroughs in drug development. <br>
 In my spare time, I am a reader of thrillers, I love winter, and I'm definetely a cat person. Besides biology and bioinformatics, another one of my great passions is <i>Greek mythology</i>!
+
+<br><br>
+<br><br>
+<br><br>

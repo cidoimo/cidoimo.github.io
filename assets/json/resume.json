@@ -1,18 +1,14 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "Davide Pietrafesa",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "email": "davide.pietrafesa@uniroma2.it",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "Via della Ricerca Scientifica 1",
+      "postalCode": "RM 00133",
+      "city": "Rome",
+      "countryCode": "IT",
+      "region": "Latium"
     },
     "profiles": [
       {
@@ -151,15 +147,21 @@
   ],
   "languages": [
     {
-      "language": "German",
+      "language": "Italian",
       "fluency": "Native speaker",
       "icon": ""
     },
     {
       "language": "English",
-      "fluency": "Fluent",
+      "fluency": "C1",
+      "icon": ""
+    },
+    {
+      "language": "Spanish",
+      "fluency": "A2",
       "icon": ""
     }
+
   ],
   "interests": [
     {
