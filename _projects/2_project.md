@@ -65,3 +65,6 @@ Once this is done, we obtain a trajectory without water that can be visualized l
 <li> Everything would work, now, by simply typing <code>vmd</code> in your command line</li>
 </ol>
 </p>
+
+<p> Thanks to Alessia P.
+</p>
