@@ -41,8 +41,14 @@ Example:
 {% raw %}
 
 ```html
-cpptraj parm yourfile_ionized.prmtop trajin mdcrd.nvt1 strip :WAT,Na+ #this command will remove water atoms and Na+ ions from the trajectory autoimage
-:1-46 #this command will remap the residues to correct the pbc problems trajout nvt1_nowat.xtc xtc go quit
+cpptraj
+parm yourfile_ionized.prmtop
+trajin mdcrd.nvt1
+strip :WAT,Na+ #this command will remove water atoms and Na+ ions from the trajectory
+autoimage :1-46 #this command will remap the residues to correct the pbc problems
+trajout nvt1_nowat.xtc xtc
+go
+quit
 ```
 
 {% endraw %}
