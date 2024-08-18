@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 gem 'httparty'
 gem 'jekyll'
 gem "feedjira"
-gem 'rails', '~> 6.1'
+#gem 'rails', '~> 6.1'
 gem 'activesupport'
 
 #Dipendenze jekyll 
@@ -23,3 +23,5 @@ gem 'jekyll-twitter-plugin'
 gem 'jemoji'
 
 gem 'css_parser'
+#gem 'therubyracer', platforms: :ruby
+#gem 'execjs'
